@@ -21,9 +21,27 @@ class SimpleCNN(nn.Module):
         x = self.fc2(x)
         return x
 
-def load_trained_model(path="model/model.pth", device="cpu"):
+def load_trained_model(path="model/model_balanced.pth", device="cpu"):
+    """
+    Load the trained model. Now uses the balanced model by default.
+    You can specify a different path if needed.
+    """
     model = SimpleCNN()
-    model.load_state_dict(torch.load(path, map_location=device))
+    
+    try:
+        model.load_state_dict(torch.load(path, map_location=device))
+        print(f"✅ Loaded balanced model from {path}")
+    except FileNotFoundError:
+        print(f"⚠️  Balanced model not found at {path}, trying original model...")
+        # Fallback to original model if balanced model doesn't exist
+        fallback_path = "model/model.pth"
+        try:
+            model.load_state_dict(torch.load(fallback_path, map_location=device))
+            print(f"✅ Loaded original model from {fallback_path}")
+        except FileNotFoundError:
+            print(f"❌ No model found at {path} or {fallback_path}")
+            raise
+    
     model.to(device)
     model.eval()
     return model

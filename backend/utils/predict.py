@@ -6,13 +6,17 @@ from torchvision import transforms
 
 # These transforms MUST match your training transforms
 transform = transforms.Compose([
-    transforms.Grayscale(num_output_channels=1),
+    transforms.Grayscale(num_output_channels=1),  # Fixed: match training exactly
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
     transforms.Normalize([0.5], [0.5])
 ])
 
-def predict_image(image_bytes, model, device="cpu", threshold=0.7):
+def predict_image(image_bytes, model, device="cpu", threshold=0.5):
+    """
+    Predict the class of an X-ray image.
+    Now uses a lower default threshold since we have a balanced model.
+    """
     # Load image from raw bytes
     image = Image.open(io.BytesIO(image_bytes)).convert("L")
     
@@ -32,19 +36,17 @@ def predict_image(image_bytes, model, device="cpu", threshold=0.7):
         normal_prob = probabilities[0][0].item()
         pneumonia_prob = probabilities[0][1].item()
         
-        # Apply threshold-based decision to reduce bias
-        if pneumonia_prob > threshold:
+        # Simple threshold-based decision (now more balanced)
+        if pneumonia_prob > normal_prob:
             predicted_class = 1  # PNEUMONIA
             confidence = pneumonia_prob
-        elif normal_prob > threshold:
+        else:
             predicted_class = 0  # NORMAL
             confidence = normal_prob
-        else:
-            # If neither class has high confidence, use the more balanced approach
-            # Add a small bias towards normal to counteract the model's pneumonia bias
-            adjusted_normal = normal_prob * 1.2  # Boost normal probability
-            predicted_class = 0 if adjusted_normal > pneumonia_prob else 1
-            confidence = max(normal_prob, pneumonia_prob)
+
+        # Optional uncertainty threshold
+        if confidence < threshold:
+           predicted_class = "UNCERTAIN"
         
         print(f"Predicted class index: {predicted_class}")
         print(f"Confidence: {confidence:.4f}")
