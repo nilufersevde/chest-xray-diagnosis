@@ -1,6 +1,11 @@
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
+try:
+    import torch
+    import torch.nn as nn
+    import torch.nn.functional as F
+    TORCH_AVAILABLE = True
+except ImportError:
+    print("⚠️  PyTorch not available. Model loading will be skipped.")
+    TORCH_AVAILABLE = False
 
 # Define the same model architecture you trained
 class SimpleCNN(nn.Module):
@@ -26,6 +31,10 @@ def load_trained_model(path="model/model_balanced.pth", device="cpu"):
     Load the trained model. Now uses the balanced model by default.
     You can specify a different path if needed.
     """
+    if not TORCH_AVAILABLE:
+        print("❌ PyTorch not available. Cannot load model.")
+        return None
+        
     model = SimpleCNN()
     
     try:
