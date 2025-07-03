@@ -12,7 +12,7 @@ transform = transforms.Compose([
     transforms.Normalize([0.5], [0.5])
 ])
 
-def predict_image(image_bytes, model, device="cpu", threshold=0.5):
+def predict_image(image_bytes, model, device="cpu", threshold=0.85):
     """
     Predict the class of an X-ray image.
     Now uses a lower default threshold since we have a balanced model.
