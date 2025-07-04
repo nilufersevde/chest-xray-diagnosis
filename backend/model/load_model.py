@@ -1,3 +1,4 @@
+from pathlib import Path
 try:
     import torch
     import torch.nn as nn
@@ -26,7 +27,7 @@ class SimpleCNN(nn.Module):
         x = self.fc2(x)
         return x
 
-def load_trained_model(path="model/model_balanced.pth", device="cpu"):
+def load_trained_model(device="cpu"):
     """
     Load the trained model. Now uses the balanced model by default.
     You can specify a different path if needed.
@@ -34,23 +35,28 @@ def load_trained_model(path="model/model_balanced.pth", device="cpu"):
     if not TORCH_AVAILABLE:
         print("❌ PyTorch not available. Cannot load model.")
         return None
-        
+
+    # Figure out the directory this file is in (backend/model)
+    this_dir = Path(__file__).resolve().parent
+
+    # Build absolute paths to both models
+    balanced_model_path = this_dir / "model_balanced.pth"
+    fallback_model_path = this_dir / "model.pth"
+
     model = SimpleCNN()
-    
+
     try:
-        model.load_state_dict(torch.load(path, map_location=device))
-        print(f"✅ Loaded balanced model from {path}")
+        model.load_state_dict(torch.load(balanced_model_path, map_location=device))
+        print(f"✅ Loaded balanced model from {balanced_model_path}")
     except FileNotFoundError:
-        print(f"⚠️  Balanced model not found at {path}, trying original model...")
-        # Fallback to original model if balanced model doesn't exist
-        fallback_path = "model/model.pth"
+        print(f"⚠️ Balanced model not found at {balanced_model_path}, trying original model...")
         try:
-            model.load_state_dict(torch.load(fallback_path, map_location=device))
-            print(f"✅ Loaded original model from {fallback_path}")
+            model.load_state_dict(torch.load(fallback_model_path, map_location=device))
+            print(f"✅ Loaded original model from {fallback_model_path}")
         except FileNotFoundError:
-            print(f"❌ No model found at {path} or {fallback_path}")
+            print(f"❌ No model found at {balanced_model_path} or {fallback_model_path}")
             raise
-    
+
     model.to(device)
     model.eval()
     return model
