@@ -1,7 +1,7 @@
 from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import JSONResponse
-from model.load_model import load_trained_model
-from utils.predict import predict_image
+from backend.model.load_model import load_trained_model
+from backend.utils.predict import predict_image
 from fastapi.middleware.cors import CORSMiddleware
 
 
