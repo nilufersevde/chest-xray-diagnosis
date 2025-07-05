@@ -2,7 +2,7 @@
 
 A deep learning-powered web application for automated chest X-ray analysis and pneumonia detection. Built with FastAPI, PyTorch, and vanilla HTML/CSS/JavaScript, this application provides real-time medical image analysis with confidence scoring.
 
-## 🏥 Overview
+## Overview
 
 This application uses a Convolutional Neural Network (CNN) trained on a balanced dataset of **pediatric chest X-ray images** to classify between normal and pneumonia cases. The model achieves 85% accuracy on the test set and provides confidence scores for predictions.
 
@@ -18,11 +18,11 @@ This application uses a Convolutional Neural Network (CNN) trained on a balanced
 - **Production Ready**: Deployed on Railway with full-stack integration
 - **Medical Domain Expertise**: Built by an MD with CSE background
 
-## 🚀 Live Demo
+## Live Demo
 
 [View Live Application](https://chest-xray-backend-production.up.railway.app/)
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### Backend
 - **FastAPI**: High-performance web framework for building APIs
@@ -46,7 +46,7 @@ This application uses a Convolutional Neural Network (CNN) trained on a balanced
 - **GitHub**: Version control and CI/CD
 - **Docker**: Containerized deployment (if needed)
 
-## 📊 Model Performance
+## Model Performance
 
 ```
 Confusion Matrix:
@@ -63,7 +63,7 @@ Classification Report:
 weighted avg       0.85      0.85      0.85       624
 ```
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -76,7 +76,7 @@ weighted avg       0.85      0.85      0.85       624
 └─────────────────┘    └─────────────────┘    └─────────────────┘
 ```
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 - Python 3.8+
@@ -108,7 +108,7 @@ weighted avg       0.85      0.85      0.85       624
    - Upload a chest X-ray image
    - View the prediction results
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 chest-xray-diagnosis/
@@ -131,7 +131,7 @@ chest-xray-diagnosis/
 └── README.md                   # This file
 ```
 
-## 🔧 API Endpoints
+##  API Endpoints
 
 ### POST `/predict`
 Upload a chest X-ray image for analysis.
@@ -159,7 +159,7 @@ Serves the main web interface.
 ### GET `/health`
 Health check endpoint.
 
-## 🧠 Model Details
+## Model Details
 
 ### Architecture
 - **Input**: 224x224 grayscale pediatric chest X-ray images
@@ -175,7 +175,7 @@ Health check endpoint.
 - **Optimizer**: Adam with learning rate 0.001
 - **Loss Function**: Cross-entropy with class weights
 
-## 🎯 Key Features Explained
+## Key Features Explained
 
 ### Pediatric Focus
 This application is specifically designed for pediatric chest X-ray analysis. The model was trained on chest X-rays from children and adolescents, making it particularly effective for pediatric cases. While it can analyze adult chest X-rays, the highest accuracy and reliability are achieved with pediatric images.
@@ -197,14 +197,14 @@ Images are processed in real-time with the following pipeline:
 4. Confidence calculation
 5. Result formatting and display
 
-## 🔒 Security & Privacy
+## Security & Privacy
 
 - **No Data Storage**: Images are processed in memory and not stored
 - **Input Validation**: File type and size validation
 - **Error Handling**: Graceful error handling for invalid inputs
 - **CORS Enabled**: Configured for web application access
 
-## 🚀 Deployment
+## Deployment
 
 The application is deployed on Railway with the following configuration:
 
@@ -213,7 +213,7 @@ The application is deployed on Railway with the following configuration:
 - **Model**: Pre-trained PyTorch model loaded at startup
 - **Database**: No database required (stateless application)
 
-## 📈 Future Enhancements
+## Future Enhancements
 
 - [ ] Multi-disease classification (COVID-19, tuberculosis)
 - [ ] Medical report generation
@@ -222,22 +222,22 @@ The application is deployed on Railway with the following configuration:
 - [ ] Integration with PACS systems
 - [ ] Advanced visualization tools
 
-## 🤝 Contributing
+## Contributing
 
 This is a portfolio project demonstrating medical AI applications. For questions or collaboration opportunities, please reach out.
 
-## 📝 License
+## License
 
 This project is for educational and portfolio purposes. The medical model should not be used for clinical decision-making without proper validation.
 
-## 👨‍⚕️ About the Developer
+## About the Developer
 
 **Developer**: [Your Name]  
 **Background**: MD (Medical Doctor) + CSE (Computer Science Engineering) Master's Student  
 **Specialization**: Medical AI, Computer Vision, Healthcare Technology  
 **Contact**: [Your Email/LinkedIn]
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Kermany et al. and Guangzhou Women and Children's Medical Center for the pediatric chest X-ray dataset
 - Paul Mooney for making the dataset available on Kaggle
