@@ -54,7 +54,12 @@ def predict_image(image_bytes, model, device="cpu", threshold=0.85):
 
     # Convert index to label
     class_names = ["NORMAL", "PNEUMONIA"]
-    prediction = class_names[predicted_class]
+    
+    # Handle the case where predicted_class is "UNCERTAIN"
+    if predicted_class == "UNCERTAIN":
+        prediction = "UNCERTAIN"
+    else:
+        prediction = class_names[predicted_class]
     
     return {
         "prediction": prediction,
