@@ -6,8 +6,6 @@ A deep learning-powered web application for automated chest X-ray analysis and p
 
 This application uses a Convolutional Neural Network (CNN) trained on a balanced dataset of **pediatric chest X-ray images** to classify between normal and pneumonia cases. The model achieves 85% accuracy on the test set and provides confidence scores for predictions.
 
-**Important Note**: This model was specifically trained on pediatric chest X-rays and is optimized for analyzing chest X-rays from children and adolescents. While it may work on adult chest X-rays, the highest accuracy is achieved with pediatric cases.
-
 ### Key Features
 
 - **Pediatric X-ray Analysis**: Optimized for analyzing chest X-rays from children and adolescents
@@ -221,30 +219,3 @@ The application is deployed on Railway with the following configuration:
 - [ ] Mobile application
 - [ ] Integration with PACS systems
 - [ ] Advanced visualization tools
-
-## Contributing
-
-This is a portfolio project demonstrating medical AI applications. For questions or collaboration opportunities, please reach out.
-
-## License
-
-This project is for educational and portfolio purposes. The medical model should not be used for clinical decision-making without proper validation.
-
-## About the Developer
-
-**Developer**: [Your Name]  
-**Background**: MD (Medical Doctor) + CSE (Computer Science Engineering) Master's Student  
-**Specialization**: Medical AI, Computer Vision, Healthcare Technology  
-**Contact**: [Your Email/LinkedIn]
-
-## Acknowledgments
-
-- Kermany et al. and Guangzhou Women and Children's Medical Center for the pediatric chest X-ray dataset
-- Paul Mooney for making the dataset available on Kaggle
-- PyTorch community for deep learning framework
-- FastAPI for the web framework
-- Railway for deployment platform
-
----
-
-**Disclaimer**: This application is for educational and demonstration purposes. It should not be used for clinical decision-making without proper medical validation and regulatory approval.
