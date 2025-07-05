@@ -1,0 +1,21 @@
+# Ignore development files
+chestxrayenv/
+notebooks/
+*.ipynb
+.DS_Store
+.git/
+.gitignore
+
+# Ignore test files
+test_deployment.py
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# Keep model files but ignore other large files
+# backend/model/model_balanced.pth - KEEP THIS 

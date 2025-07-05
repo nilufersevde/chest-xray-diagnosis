@@ -17,7 +17,7 @@ form.addEventListener('submit', async (e) => {
   resultDiv.textContent = 'Predicting...';
 
   try {
-    const response = await fetch('http://localhost:8000/predict', {
+    const response = await fetch('/predict', {
       method: 'POST',
       body: formData
     });
